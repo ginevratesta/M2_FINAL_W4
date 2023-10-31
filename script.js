@@ -176,10 +176,6 @@ function searchDreamJob() {
   /* Puliamo la lista dei risultati in modo che non si mostri la lista per intero */
   list.innerHTML = "";
   for (let i = 0; i < jobs.length; i++) {
-    const jobTitleInput = document.querySelector("#jobTitle");
-    const jobLocationInput = document.querySelector("#jobLocation");
-    const title = jobTitleInput.value.toLowerCase();
-    const location = jobLocationInput.value.toLowerCase();
     if (
       jobs[i].title.toLowerCase().includes(title) &&
       jobs[i].location.toLowerCase().includes(location)
