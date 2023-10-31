@@ -111,9 +111,6 @@ REQUISITI:
    - la tua ricerca deve essere "case insensitive" (non deve essere influenzata da lettere maiuscole o minuscole nelle parole cercate). 
    Questo e' possibile trasformando tutto in lettere minuscole con .toLowerCase()*/
 
-
-
-
 function searchJobsByTitleAndLocation(title, location) {
   title = title.toLowerCase();
   location = location.toLowerCase();
@@ -149,8 +146,6 @@ function searchJobsByTitleAndLocation(title, location) {
 const searchResults = searchJobsByTitleAndLocation("software", "us");
 console.log(searchResults);
 
-
-
 /*
 PARTE 2: 
 Nella pagina HTML, inserisci 2 input di tipo testo (uno per la location e uno per il titolo lavorativo, ricordati di diversificarli con un id) e un bottone con valore “cerca”
@@ -163,7 +158,6 @@ Dopo aver raccolto ed elaborato i dati, e’ il momento di mostrare i risultati 
     SUGGERIMENTO: ti servira’ un ciclo for!
 
 */
-
 
 // Dichiariamo la costante list che rappresenta l'elemento HTML <ul>
 const list = document.querySelector("#resultsList");
@@ -182,12 +176,22 @@ const searchDreamJob = function () {
   /* Puliamo la lista dei risultati in modo che non si mostri la lista per intero */
   list.innerHTML = "";
   for (let i = 0; i < jobs.length; i++) {
+    const jobTitleInput = document.querySelector("#jobTitle");
+    const jobLocationInput = document.querySelector("#jobLocation");
+    const title = jobTitleInput.value.toLowerCase();
+    const location = jobLocationInput.value.toLowerCase();
     if (
       jobs[i].title.toLowerCase().includes(title) &&
       jobs[i].location.toLowerCase().includes(location)
     ) {
       list.innerHTML += `<li>${jobs[i].title} ${jobs[i].location}</li>`;
+      return;
     }
+  }
+
+  if (title.trim() === "" || location.trim() === "") {
+    list.innerHTML = "<li>No Job found.</li>";
+    alert("Insertt both Title and Location for a better research.");
   }
 };
 const searchButton = document.querySelector("#searchButton");
