@@ -175,6 +175,11 @@ function searchDreamJob() {
 
   /* Puliamo la lista dei risultati in modo che non si mostri la lista per intero */
   list.innerHTML = "";
+
+  /* Per ciascun elemento dell'array, verifichiamo se il titolo e la posizione del lavoro corrente
+    includono i valori title e location ottenuti dagli input convertiti in lettere minuscole. 
+    Se c'è una corrispondenza, creiamo un elemento di lista <li> e lo aggiungiamo all'elemento list. 
+    Questo costruisce la lista dei risultati in base ai criteri di ricerca.*/
   for (let i = 0; i < jobs.length; i++) {
     if (
       jobs[i].title.toLowerCase().includes(title) &&
@@ -184,10 +189,16 @@ function searchDreamJob() {
     }
   }
 
+  /* Se non vengono trovati risultati che soddisfano i criteri di ricerca, 
+     o se uno dei campi di input è vuoto (verificato utilizzando .trim()), 
+     tramite modifica su HTML tramite .innerHTML mostriamo la scritta "No Job found." 
+     e tramite alert mostriamo un messaggio.*/
   if (title.trim() === "" || location.trim() === "") {
     list.innerHTML = "<li>No Job found.</li>";
     alert("Insert both Title and Location for a better research.");
   }
 }
+
+/* Se l'utente fa clic sul pulsante "SEARCH" l'evento click attiva la funzione searchDreamJob. */
 const searchButton = document.querySelector("#searchButton");
 searchButton.addEventListener("click", searchDreamJob);
