@@ -123,39 +123,23 @@ const jobs = [
   },
 ];
 
-/* Iniziamo la funzione attribuendole due parametri e specifichiamo subito che il testo sarà trasformato in minuscolo
-   grazie a .toLoweCase() per evitare le problematiche del case sensitive */
+const list = document.querySelector("#resultsList");
 
-function searchJobsByTitleAndLocation(title, location) {
-  title = title.toLowerCase();
-  location = location.toLowerCase();
+const searchDreamJob = function () {
+  const jobTitleInput = document.querySelector("#jobTitle");
+  const jobLocationInput = document.querySelector("#jobLocation");
+  const title = jobTitleInput.value.toLowerCase();
+  const location = jobLocationInput.value.toLowerCase();
 
-  /* Dichiariamo un array vuoto dentro il quale inseriremo con .push tutti i risultati */
-
-  const results = [];
-
-  /* Grazie ad un loop possiamo analizzare tutto il contenuto dell'array e con la condizionale if 
-    decidiamo quali elementi dell'array jobs verrano inseriti dentro l'array vuoto results */
-
+  list.innerHTML = "";
   for (let i = 0; i < jobs.length; i++) {
-    const job = jobs[i];
-    const jobTitle = job.title.toLowerCase();
-    const jobLocation = job.location.toLowerCase();
-
-    if (jobTitle.includes(title) && jobLocation.includes(location)) {
-      results.push(job);
+    if (
+      jobs[i].title.toLowerCase().includes(title) &&
+      jobs[i].location.toLowerCase().includes(location)
+    ) {
+      list.innerHTML += `<li>${jobs[i].title} ${jobs[i].location}</li>`;
     }
   }
-
-  /* Con la dichiarazione return creiamo un oggetto con due chiavi: result e count. 
-     Result è associato all'array results, contenente i risultati della ricerca,
-     mentre count è associato alla lunghezza di results, che rappresenta il numero totale di risultati trovati. */
-
-  return {
-    result: results,
-    count: results.length,
-  };
-}
-
-const searchResults = searchJobsByTitleAndLocation("software", "us");
-//console.log(searchResults);
+};
+const searchButton = document.querySelector("#searchButton");
+searchButton.addEventListener("click", searchDreamJob);
