@@ -123,10 +123,19 @@ const jobs = [
   },
 ];
 
+/* Iniziamo la funzione attribuendole due parametri e specifichiamo subito che il testo sarà trasformato in minuscolo
+   grazie a .toLoweCase() per evitare le problematiche del case sensitive */
 
 function searchJobsByTitleAndLocation(title, location) {
   title = title.toLowerCase();
   location = location.toLowerCase();
+
+  /* Dichiariamo un array vuoto dentro il quale inseriremo con .push tutti i risultati */
+
+  const results = [];
+
+  /* Grazie ad un loop possiamo analizzare tutto il contenuto dell'array e con la condizionale if 
+    decidiamo quali elementi dell'array jobs verrano inseriti dentro l'array vuoto results */
 
   for (let i = 0; i < jobs.length; i++) {
     const job = jobs[i];
@@ -134,9 +143,19 @@ function searchJobsByTitleAndLocation(title, location) {
     const jobLocation = job.location.toLowerCase();
 
     if (jobTitle.includes(title) && jobLocation.includes(location)) {
-      console.log(`${job.title} - ${job.location}`);
+      results.push(job);
     }
   }
+
+  /* Con la dichiarazione return creiamo un oggetto con due chiavi: result e count. 
+     Result è associato all'array results, contenente i risultati della ricerca,
+     mentre count è associato alla lunghezza di results, che rappresenta il numero totale di risultati trovati. */
+
+  return {
+    result: results,
+    count: results.length,
+  };
 }
 
-searchJobsByTitleAndLocation("Software", "US");
+const searchResults = searchJobsByTitleAndLocation("software", "us");
+//console.log(searchResults);
