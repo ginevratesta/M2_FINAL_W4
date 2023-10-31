@@ -191,8 +191,8 @@ function searchDreamJob() {
 
   /* Se non vengono trovati risultati che soddisfano i criteri di ricerca, 
      o se uno dei campi di input è vuoto (verificato utilizzando .trim()), 
-     tramite modifica su HTML tramite .innerHTML mostriamo la scritta "No Job found." 
-     e tramite alert mostriamo un messaggio.*/
+     tramite modifica su HTML con .innerHTML mostriamo la scritta "No Job found." 
+     e tramite alert mostriamo un messaggio di spiegazioni.*/
   if (title.trim() === "" || location.trim() === "") {
     list.innerHTML = "<li>No Job found.</li>";
     alert("Insert both Title and Location for a better research.");
