@@ -167,7 +167,7 @@ const list = document.querySelector("#resultsList");
    Usando gli id dichiarati in precedenza sul foglio HTML per i due input (title e location),
    dichiariamo le loro costanti e applichiamo .toLowerCase per convertire il testo in minuscolo.
    Questo eviterà prblematiche legate al Case Sensitive.*/
-const searchDreamJob = function () {
+function searchDreamJob() {
   const jobTitleInput = document.querySelector("#jobTitle");
   const jobLocationInput = document.querySelector("#jobLocation");
   const title = jobTitleInput.value.toLowerCase();
@@ -185,14 +185,13 @@ const searchDreamJob = function () {
       jobs[i].location.toLowerCase().includes(location)
     ) {
       list.innerHTML += `<li>${jobs[i].title} ${jobs[i].location}</li>`;
-      return;
     }
   }
 
   if (title.trim() === "" || location.trim() === "") {
     list.innerHTML = "<li>No Job found.</li>";
-    alert("Insertt both Title and Location for a better research.");
+    alert("Insert both Title and Location for a better research.");
   }
-};
+}
 const searchButton = document.querySelector("#searchButton");
 searchButton.addEventListener("click", searchDreamJob);
