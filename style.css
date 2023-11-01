@@ -1,3 +1,29 @@
 body {
+  text-align: center;
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0px;
+  background-color: #F7EDE0;
+  color: #333333;
+}
+
+header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  background-color: #337f8b
+}
+h1{
+    color:#DC8C3C;
+    font-size: 3em;
+    margin-bottom: 5px;
+}
+
+#searchButton {
+  width: 100px;
+  border: none;
+  border-radius: 20px;
+  padding: 5px;
+  margin-top: 10px;
+  background-color:#DC8C3C;
+  color:#F7EDE0;
 }
