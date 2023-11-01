@@ -141,9 +141,9 @@ function searchJobsByTitleAndLocation(title, location) {
     count: results.length,
   };
 }
-
-const searchResults = searchJobsByTitleAndLocation("software", "us");
+const searchResults = searchJobsByTitleAndLocation();
 console.log(searchResults);
+
 
 /*
 PARTE 2: 
