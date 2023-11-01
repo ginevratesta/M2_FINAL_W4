@@ -160,7 +160,7 @@ Dopo aver raccolto ed elaborato i dati, e’ il momento di mostrare i risultati 
 
 // Dichiariamo la costante list che rappresenta l'elemento HTML <ul> e counter che rappresenta <p>
 const list = document.querySelector("#resultsList");
-const counter = document.querySelector("#resultsCounter")
+const counter = document.querySelector("#resultsCounter");
 
 /* Definiamo una funzione chiamata searchDreamJob
    e facciamo sì che si esegua ogni volta che l'utente farà click sul pulsante SEARCH.
@@ -176,7 +176,7 @@ function searchDreamJob() {
 
   /* Puliamo la lista dei risultati in modo che non si mostri la lista per intero */
   list.innerHTML = "";
-  counter.innerText= "";
+  counter.innerText = "";
   /* Per ciascun elemento dell'array, verifichiamo se il titolo e la posizione del lavoro corrente
     includono i valori title e location ottenuti dagli input convertiti in lettere minuscole. 
     Se c'è una corrispondenza, creiamo un elemento di lista <li> e lo aggiungiamo all'elemento list. 
@@ -202,7 +202,6 @@ function searchDreamJob() {
     alert("Insert both Title and Location for a better research.");
   }
 }
-
 
 /* Se l'utente fa clic sul pulsante "SEARCH" l'evento click attiva la funzione searchDreamJob. */
 const searchButton = document.querySelector("#searchButton");
