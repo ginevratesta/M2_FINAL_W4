@@ -7,27 +7,48 @@
     <title>OCCUPY</title>
   </head>
   <body>
-      <header>
+    <header>
       <h1>OCCUPY</h1>
-      <p>WANT TO CHANGE YOUR LIFE?</p>
-      </header>
-      <p>
-        Finding a Job has never been this EASY!<br>
-        Insert here the Job you DREAMS about and your location and we'll find the best solution Just for You!    
-      </p>
-      <label for="jobTitle">Job Title:</label>
-      <input type="text" id="jobTitle" placeholder="Insert here your dream job" />
-    <br>
+      <span>WANT TO CHANGE YOUR LIFE?</span>
+    </header>
+    <main class="container">
+    <div id="aside">
+        <ul>
+            <li>Are you overworked?</li>
+            <li>Tired of making the bare minimum per month?</li>
+            <li>Want to get a new Job?</li>
+            <li>Want to have an happy peacefull life?</li>
+            <li>Want to be able to love what you do?</li>
+            <li>Then We Have The Perfect Spell to Give you the Magic Life You Deserve!</li>
+        </ul>
+    </div>
+    <div id="article" class="container">
+        <p>
+          Finding a Job has never been this EASY!
+          With OCCUPY you'll be able to reach your DREAM Job in instants!
+        </p>
+    <p>
+      Insert here the Job of your DREAMS and your location and we'll find the
+      best solution Just for You!
+    </p>
+    <label for="jobTitle">Job Title:</label>
+    <input type="text"
+     id="jobTitle" 
+     class="input-bar" 
+     placeholder="Insert your dream Job" />
+    <br />
     <label for="jobLocation">Job Location:</label>
     <input
       type="text"
       id="jobLocation"
+      class="input-bar"
       placeholder="Insert here your location"
     />
-    <br>
+    <br />
     <button id="searchButton">SEARCH</button>
     <p id="resultsCounter"></p>
     <ul id="resultsList"></ul>
+</main>
     <script src="./script.js"></script>
   </body>
 </html>
