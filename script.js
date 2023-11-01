@@ -198,7 +198,7 @@ function searchDreamJob() {
      e tramite alert mostriamo un messaggio di spiegazioni.*/
   if (title.trim() === "" || location.trim() === "") {
     list.innerHTML = "<li>No Job found.</li>";
-    counter.innerText = `No results.`;
+    counter.innerText = `0`;
     alert("Insert both Title and Location for a better research.");
   }
 }
