@@ -27,6 +27,15 @@ h1 {
   margin: 5px;
   margin-top: 20px;
 }
+
+#under-title {
+  background-color: #dc8c3c;
+  width: 100%;
+}
+#under-title p {
+  margin: 10px;
+}
+
 .container {
   display: flex;
 }
