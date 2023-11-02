@@ -130,40 +130,42 @@ Dopo aver raccolto ed elaborato i dati, e’ il momento di mostrare i risultati 
 
       list.innerHTML = "";
       counter.innerText = "";
-    
-      title = title.toLowerCase();
-      location = location.toLowerCase();
+      //valuto prima gli input per ottimizzare la funzione, se sono vuote il resto è inutile
+      if (title.trim() === "" || location.trim() === "") {
+        list.innerHTML = "<li>No job found.</li>";
+        counter.innerText = `Results found: 0`;
+        alert("Please enter both the Title and the Location for a better search.");
+        // se sono vuote avverto ed esco dalla funzione con return;
+        return;
+      }
+
+      titleLowercase = title.toLowerCase();
+      locationLowercase = location.toLowerCase();
     
       let resultCount = 0;
-      const result = [];
+      let result = [];
     
       for (let i = 0; i < jobs.length; i++) {
         const job = jobs[i];
         const jobTitle = job.title.toLowerCase();
         const jobLocation = job.location.toLowerCase();
     
-        if (jobTitle.includes(title) && jobLocation.includes(location)) {
+        if (jobTitle.includes(titleLowercase) && jobLocation.includes(locationLowercase)) {
           result.push(job);
           resultCount++;
           list.innerHTML += `<li>${job.title} - ${job.location}</li>`;
         }
       }
-    
-      counter.innerText = `Results found: ${resultCount}`;
-    
-      if (title.trim() === "" || location.trim() === "") {
-        list.innerHTML = "<li>No job found.</li>";
-        counter.innerText = "0";
-        alert("Please enter both the Title and the Location for a better search.");
+      counter.innerText = `Results found: ${resultCount}`;    
+      
+      console.log("Result: ", result, "Count: ", resultCount);
+    }
+      
+      function searchDreamJob() {
+        const jobTitleInput = document.querySelector("#jobTitle").value;
+        const jobLocationInput = document.querySelector("#jobLocation").value;
+        searchJobsByTitleAndLocation(jobTitleInput, jobLocationInput);
       }
-        console.log("Result: ", result, "Count: ", resultCount);
-    }
-    
-    function searchDreamJob() {
-      const jobTitleInput = document.querySelector("#jobTitle").value;
-      const jobLocationInput = document.querySelector("#jobLocation").value;
-      searchJobsByTitleAndLocation(jobTitleInput, jobLocationInput);
-    }
     
     const searchButton = document.querySelector("#searchButton");
     searchButton.addEventListener("click", searchDreamJob);
