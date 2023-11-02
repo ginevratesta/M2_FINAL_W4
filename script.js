@@ -127,9 +127,7 @@ Dopo aver raccolto ed elaborato i dati, e’ il momento di mostrare i risultati 
     const counter = document.querySelector("#resultsCounter");
     
     function searchJobsByTitleAndLocation(title, location) {
-      // Riporta il valore a false all'inizio di ogni ricerca
-      searchExecuted = false;
-    
+
       list.innerHTML = "";
       counter.innerText = "";
     
