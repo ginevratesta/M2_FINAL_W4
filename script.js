@@ -120,53 +120,76 @@ Dopo aver raccolto ed elaborato i dati, e’ il momento di mostrare i risultati 
     Puoi scegliere tu se utilizzare un semplice ul / li oppure una tabella 
     Vai passo per passo e usa molti console.log per capire eventualmente dove sbagli
     SUGGERIMENTO: ti servira’ un ciclo for!
-    
     */
 
+
+    /* Selezioniamo gli elementi HTML con gli ID "resultsList" e "resultsCounter";
+       rispettivamente tag <ul> e tag <p> */
     const list = document.querySelector("#resultsList");
     const counter = document.querySelector("#resultsCounter");
     
+    /* Tramite l'ausilio di una funzione effettuiamo una ricerca fra tutti gli oggetti dentro l'array
+       in base a title e location */
     function searchJobsByTitleAndLocation(title, location) {
 
+      //Azzeriamo il contenuto dei risultati per evitare che a prescindere dalla ricerca si mostri tutto l'elenco
       list.innerHTML = "";
       counter.innerText = "";
-      //valuto prima gli input per ottimizzare la funzione, se sono vuote il resto è inutile
+
+      //Valutiamo prima gli input per ottimizzare la funzione, se sono vuoti il resto non serve
       if (title.trim() === "" || location.trim() === "") {
         list.innerHTML = "<li>No job found.</li>";
         counter.innerText = `Results found: 0`;
         alert("Please enter both the Title and the Location for a better search.");
-        // se sono vuote avverto ed esco dalla funzione con return;
-        return;
+        
+        /* Se sono vuoti mostriamo i messaggi su web e mandiamo un alert, la console non stamperà nulla
+           ed infine usciamo dalla funzione con return */
+        return console.log("No Results. Count: 0");
       }
 
+      // Convertiamo title e location in lettere minuscole per evitare problematiche di Case Sensitive
       titleLowercase = title.toLowerCase();
       locationLowercase = location.toLowerCase();
     
+      // Inizializziamo il conteggio dei risultati e l'array dei risultati
       let resultCount = 0;
       let result = [];
     
+      // Iteriamo attraverso l'array jobs
       for (let i = 0; i < jobs.length; i++) {
         const job = jobs[i];
         const jobTitle = job.title.toLowerCase();
         const jobLocation = job.location.toLowerCase();
     
+        // Se sia title che location del lavoro corrente corrispondono ai criteri di ricerca, aggiungiamo il lavoro ai risultati
         if (jobTitle.includes(titleLowercase) && jobLocation.includes(locationLowercase)) {
           result.push(job);
           resultCount++;
+
+          // Aggiungiamo il lavoro alla lista dei risultati visualizzata sulla pagina
           list.innerHTML += `<li>${job.title} - ${job.location}</li>`;
         }
       }
-      counter.innerText = `Results found: ${resultCount}`;    
       
+      // Aggiorniamo il contatore dei risultati con il numero trovato
+      counter.innerText = `Results found: ${resultCount}`;    
+
+      // Stampiamo i risultati(lavori che corrispondo ai criteri di ricerca pushati dentro l'array vuoto) e il conteggio sulla console
       console.log("Result: ", result, "Count: ", resultCount);
     }
       
+      // Questa funzione viene chiamata solo tramite evento specifico(click utente su tasto SEARCH)
       function searchDreamJob() {
+
+        // Otteniamo i valori inseriti dall'utente per title e location dei lavori
         const jobTitleInput = document.querySelector("#jobTitle").value;
         const jobLocationInput = document.querySelector("#jobLocation").value;
+
+        // Chiamiamo la funzione di ricerca con i valori inseriti
         searchJobsByTitleAndLocation(jobTitleInput, jobLocationInput);
       }
     
+    // Dichiariamo il button SEARCH e gli attribuiamo .addEventListener per attivare la funzione al clic sul pulsante
     const searchButton = document.querySelector("#searchButton");
     searchButton.addEventListener("click", searchDreamJob);
     
