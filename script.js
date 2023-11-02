@@ -123,51 +123,50 @@ Dopo aver raccolto ed elaborato i dati, e’ il momento di mostrare i risultati 
     
     */
 
-const list = document.querySelector("#resultsList");
-const counter = document.querySelector("#resultsCounter");
-
-function searchJobsByTitleAndLocation(title, location) {
-  list.innerHTML = "";
-  counter.innerText = "";
-
-  title = title.toLowerCase();
-  location = location.toLowerCase();
-
-  let resultCount = 0;
-  const result = [];
-
-  for (let i = 0; i < jobs.length; i++) {
-    const job = jobs[i];
-    const jobTitle = job.title.toLowerCase();
-    const jobLocation = job.location.toLowerCase();
-
-    if (jobTitle.includes(title) && jobLocation.includes(location)) {
-      result.push(job);
-      resultCount++;
-      list.innerHTML += `<li>${job.title} - ${job.location}</li>`;
+    const list = document.querySelector("#resultsList");
+    const counter = document.querySelector("#resultsCounter");
+    
+    function searchJobsByTitleAndLocation(title, location) {
+      // Riporta il valore a false all'inizio di ogni ricerca
+      searchExecuted = false;
+    
+      list.innerHTML = "";
+      counter.innerText = "";
+    
+      title = title.toLowerCase();
+      location = location.toLowerCase();
+    
+      let resultCount = 0;
+      const result = [];
+    
+      for (let i = 0; i < jobs.length; i++) {
+        const job = jobs[i];
+        const jobTitle = job.title.toLowerCase();
+        const jobLocation = job.location.toLowerCase();
+    
+        if (jobTitle.includes(title) && jobLocation.includes(location)) {
+          result.push(job);
+          resultCount++;
+          list.innerHTML += `<li>${job.title} - ${job.location}</li>`;
+        }
+      }
+    
+      counter.innerText = `Results found: ${resultCount}`;
+    
+      if (title.trim() === "" || location.trim() === "") {
+        list.innerHTML = "<li>No job found.</li>";
+        counter.innerText = "0";
+        alert("Please enter both the Title and the Location for a better search.");
+      }
+        console.log("Result: ", result, "Count: ", resultCount);
     }
-  }
-
-  counter.innerText = `Results found: ${resultCount}`;
-
-  if (title.trim() === "" || location.trim() === "") {
-    list.innerHTML = "<li>No job found.</li>";
-    counter.innerText = "0";
-    alert("Please enter both the Title and the Location for a better search.");
-  }
-
-  if (resultCount > 0) {
-    console.log("Result: ", result, "Count: ", resultCount);
-  } else {
-    console.log("No Results found. Count: 0");
-  }
-}
-
-function searchDreamJob() {
-  const jobTitleInput = document.querySelector("#jobTitle").value;
-  const jobLocationInput = document.querySelector("#jobLocation").value;
-  searchJobsByTitleAndLocation(jobTitleInput, jobLocationInput);
-}
-
-const searchButton = document.querySelector("#searchButton");
-searchButton.addEventListener("click", searchDreamJob);
+    
+    function searchDreamJob() {
+      const jobTitleInput = document.querySelector("#jobTitle").value;
+      const jobLocationInput = document.querySelector("#jobLocation").value;
+      searchJobsByTitleAndLocation(jobTitleInput, jobLocationInput);
+    }
+    
+    const searchButton = document.querySelector("#searchButton");
+    searchButton.addEventListener("click", searchDreamJob);
+    
