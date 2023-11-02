@@ -22,14 +22,14 @@ header img {
 }
 
 h1 {
-  color: #dc8c3c;
+  color: #E7923B;
   font-size: 3em;
   margin: 5px;
   margin-top: 20px;
 }
 
 #under-title {
-  background-color: #dc8c3c;
+  background-color:#E7923B;
   width: 100%;
 }
 #under-title p {
@@ -71,7 +71,7 @@ main {
   border-radius: 20px;
   border-style: solid;
   border-width: 1px;
-  border-color: #dc8c3c;
+  border-color: #E7923B;
   padding-left: 10px;
 }
 
@@ -81,7 +81,7 @@ main {
   border-radius: 20px;
   padding: 5px;
   margin-top: 10px;
-  background-color: #dc8c3c;
+  background-color:#E7923B;
   color: #f7ede0;
 }
 
