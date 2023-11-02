@@ -176,7 +176,7 @@ function searchJobsByTitleAndLocation(title, location) {
   counter.innerText = `Results found: ${resultCount}`;
 
   // Stampiamo i risultati(lavori che corrispondo ai criteri di ricerca pushati dentro l'array vuoto) e il conteggio sulla console
-  console.log("Result: ", result, "Count: ", resultCount);
+  console.log("Result: ", result , `Count:  ${resultCount}`);
 }
 
 // Questa funzione viene chiamata solo tramite evento specifico(click utente su tasto SEARCH)
