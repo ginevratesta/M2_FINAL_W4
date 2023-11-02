@@ -110,41 +110,6 @@ REQUISITI:
    - la tua ricerca deve essere "case insensitive" (non deve essere influenzata da lettere maiuscole o minuscole nelle parole cercate). 
    Questo e' possibile trasformando tutto in lettere minuscole con .toLowerCase()*/
 
-function searchJobsByTitleAndLocation(title, location) {
-  title = title.toLowerCase();
-  location = location.toLowerCase();
-
-  /* Dichiariamo un array vuoto dentro il quale inseriremo con .push tutti i risultati */
-
-  const results = [];
-
-  /* Grazie ad un loop possiamo analizzare tutto il contenuto dell'array e con la condizionale if 
-      decidiamo quali elementi dell'array jobs verrano inseriti dentro l'array vuoto results */
-
-  for (let i = 0; i < jobs.length; i++) {
-    const job = jobs[i];
-    const jobTitle = job.title.toLowerCase();
-    const jobLocation = job.location.toLowerCase();
-
-    if (jobTitle.includes(title) && jobLocation.includes(location)) {
-      console.log(`${job.title} - ${job.location}`);
-      results.push(job);
-    }
-  }
-
-  /* Con la dichiarazione return creiamo un oggetto con due chiavi: result e count. 
-       Result è associato all'array results, contenente i risultati della ricerca,
-       mentre count è associato alla lunghezza di results, che rappresenta il numero totale di risultati trovati. */
-
-  return {
-    result: results,
-    count: results.length,
-  };
-}
-const searchResults = searchJobsByTitleAndLocation();
-console.log(searchResults);
-
-
 /*
 PARTE 2: 
 Nella pagina HTML, inserisci 2 input di tipo testo (uno per la location e uno per il titolo lavorativo, ricordati di diversificarli con un id) e un bottone con valore “cerca”
@@ -155,54 +120,54 @@ Dopo aver raccolto ed elaborato i dati, e’ il momento di mostrare i risultati 
     Puoi scegliere tu se utilizzare un semplice ul / li oppure una tabella 
     Vai passo per passo e usa molti console.log per capire eventualmente dove sbagli
     SUGGERIMENTO: ti servira’ un ciclo for!
+    
+    */
 
-*/
-
-// Dichiariamo la costante list che rappresenta l'elemento HTML <ul> e counter che rappresenta <p>
 const list = document.querySelector("#resultsList");
 const counter = document.querySelector("#resultsCounter");
 
-/* Definiamo una funzione chiamata searchDreamJob
-   e facciamo sì che si esegua ogni volta che l'utente farà click sul pulsante SEARCH.
-   Usando gli id dichiarati in precedenza sul foglio HTML per i due input (title e location),
-   dichiariamo le loro costanti e applichiamo .toLowerCase per convertire il testo in minuscolo.
-   Questo eviterà prblematiche legate al Case Sensitive.*/
-function searchDreamJob() {
-  const jobTitleInput = document.querySelector("#jobTitle");
-  const jobLocationInput = document.querySelector("#jobLocation");
-  const title = jobTitleInput.value.toLowerCase();
-  const location = jobLocationInput.value.toLowerCase();
-  let resultCount = 0;
-
-  /* Puliamo la lista dei risultati in modo che non si mostri la lista per intero */
+function searchJobsByTitleAndLocation(title, location) {
   list.innerHTML = "";
   counter.innerText = "";
-  /* Per ciascun elemento dell'array, verifichiamo se il titolo e la posizione del lavoro corrente
-    includono i valori title e location ottenuti dagli input convertiti in lettere minuscole. 
-    Se c'è una corrispondenza, creiamo un elemento di lista <li> e lo aggiungiamo all'elemento list. 
-    Questo costruisce la lista dei risultati in base ai criteri di ricerca.*/
+
+  title = title.toLowerCase();
+  location = location.toLowerCase();
+
+  let resultCount = 0;
+  const result = [];
+
   for (let i = 0; i < jobs.length; i++) {
-    if (
-      jobs[i].title.toLowerCase().includes(title) &&
-      jobs[i].location.toLowerCase().includes(location)
-    ) {
+    const job = jobs[i];
+    const jobTitle = job.title.toLowerCase();
+    const jobLocation = job.location.toLowerCase();
+
+    if (jobTitle.includes(title) && jobLocation.includes(location)) {
+      result.push(job);
       resultCount++;
-      list.innerHTML += `<li>${jobs[i].title} ${jobs[i].location}</li>`;
+      list.innerHTML += `<li>${job.title} - ${job.location}</li>`;
     }
-    counter.innerText = `Results found: ${resultCount}`;
   }
 
-  /* Se non vengono trovati risultati che soddisfano i criteri di ricerca, 
-     o se uno dei campi di input è vuoto (verificato utilizzando .trim()), 
-     tramite modifica su HTML con .innerHTML mostriamo la scritta "No Job found." 
-     e tramite alert mostriamo un messaggio di spiegazioni.*/
+  counter.innerText = `Results found: ${resultCount}`;
+
   if (title.trim() === "" || location.trim() === "") {
-    list.innerHTML = "<li>No Job found.</li>";
-    counter.innerText = `0`;
-    alert("Insert both Title and Location for a better research.");
+    list.innerHTML = "<li>No job found.</li>";
+    counter.innerText = "0";
+    alert("Please enter both the Title and the Location for a better search.");
+  }
+
+  if (resultCount > 0) {
+    console.log("Result: ", result, "Count: ", resultCount);
+  } else {
+    console.log("No Results found. Count: 0");
   }
 }
 
-/* Se l'utente fa clic sul pulsante "SEARCH" l'evento click attiva la funzione searchDreamJob. */
+function searchDreamJob() {
+  const jobTitleInput = document.querySelector("#jobTitle").value;
+  const jobLocationInput = document.querySelector("#jobLocation").value;
+  searchJobsByTitleAndLocation(jobTitleInput, jobLocationInput);
+}
+
 const searchButton = document.querySelector("#searchButton");
 searchButton.addEventListener("click", searchDreamJob);
