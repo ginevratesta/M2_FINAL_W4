@@ -135,7 +135,7 @@ function searchJobsByTitleAndLocation(title, location) {
   counter.innerText = "";
 
   //Valutiamo prima gli input per ottimizzare la funzione, se sono vuoti il resto non serve
-  if (title.trim() === "" || location.trim() === "") {
+  if (!title || !location) {
     list.innerHTML = "<li>No job found.</li>";
     counter.innerText = `Results found: 0`;
     alert("Please enter both the Title and the Location for a better search.");
@@ -176,7 +176,7 @@ function searchJobsByTitleAndLocation(title, location) {
   counter.innerText = `Results found: ${resultCount}`;
 
   // Stampiamo i risultati(lavori che corrispondo ai criteri di ricerca pushati dentro l'array vuoto) e il conteggio sulla console
-  console.log("Result: ", result , `Count:  ${resultCount}`);
+  console.log("Result: ", result, `Count:  ${resultCount}`);
 }
 
 // Questa funzione viene chiamata solo tramite evento specifico(click utente su tasto SEARCH)
