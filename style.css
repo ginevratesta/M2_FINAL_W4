@@ -29,8 +29,8 @@ h1 {
 }
 
 #under-title {
+  height: 40px;
   background-color: #e7923b;
-  width: 100%;
 }
 #under-title p {
   margin: 10px;
