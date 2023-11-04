@@ -84,6 +84,7 @@ const jobs = [
     location: "US, NY, Saint Bonaventure",
   },
 ];
+
 /* PARTE 1: 
 Oggi analizzeremo un problema molto comune: realizzare algoritmi di ricerca.
 Il tuo compito è creare una funzione che cercherà per posizione lavorativa E posizione geografica. Questi due valori verranno passati come parametri
@@ -128,13 +129,13 @@ const list = document.querySelector("#resultsList");
 const counter = document.querySelector("#resultsCounter");
 
 /* Tramite l'ausilio di una funzione effettuiamo una ricerca fra tutti gli oggetti dentro l'array
-       in base a title e location */
+       in base a title e location (valore dato ai parametri della funzione alla riga 191) */
 function searchJobsByTitleAndLocation(title, location) {
   //Azzeriamo il contenuto dei risultati per evitare che a prescindere dalla ricerca si mostri tutto l'elenco
   list.innerHTML = "";
   counter.innerText = "";
 
-  //Valutiamo prima gli input per ottimizzare la funzione, se sono vuoti il resto non serve
+  //Valutiamo prima il valore degli input per ottimizzare la funzione, se sono vuoti il resto non serve
   if (!title || !location) {
     list.innerHTML = "<li>No job found.</li>";
     counter.innerText = `Results found: 0`;
@@ -179,7 +180,7 @@ function searchJobsByTitleAndLocation(title, location) {
   console.log("Result: ", result, `Count:  ${resultCount}`);
 }
 
-// Questa funzione viene chiamata solo tramite evento specifico(click utente su tasto SEARCH)
+// Questa funzione viene chiamata solo tramite evento specifico (click utente su tasto SEARCH)
 function searchDreamJob() {
   // Otteniamo i valori inseriti dall'utente per title e location dei lavori
   const jobTitleInput = document.querySelector("#jobTitle").value;
